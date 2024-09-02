@@ -1,0 +1,14 @@
+.pp1{
+    min-width: 100px;
+    max-width: 400px;
+    margin: auto;
+}
+.pp2{
+    min-width: 100px;
+    max-width: 300px;
+    margin: auto;
+}
+.w11{
+    margin: auto;
+    min-height: 300px;
+}
