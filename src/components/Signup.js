@@ -3,6 +3,8 @@ import './Signup.css';
 import { useNavigate } from 'react-router-dom';
 import { useState,useEffect} from 'react';
 import { Form,Button } from 'react-bootstrap';
+import PasswordChecklist from "react-password-checklist";
+
 function Signup() {
     const navigate=useNavigate();
     const [user,setUser]=useState({
@@ -44,7 +46,16 @@ function Signup() {
                 onChange={handleChange}
               />
             </Form.Group>
-  
+            <div className="input-group mb-3">
+                <label className="input-group-text" htmlFor="Profession" name="Profession">Profession</label>
+                <select className="form-select" id="Profession" name="Profession" onChange={handleChange}>
+                    <option defaultValue="Student" >Student</option>
+                    <option value="Fresher">Fresher</option>
+                    <option value="Software Developer">Software Developer</option>
+                    <option value="Manager/Lead">Manager/Lead</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Control
                 type="email"
@@ -55,22 +66,9 @@ function Signup() {
                 required
               />
             </Form.Group>
-  
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Control
-                type="password"
-                placeholder="Password"
-                name="Password"
-                value={user.Password}
-                onChange={handleChange}
-                minLength={'6'}
-                required
-              />
-            </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicNumber">
               <Form.Control
                 type="tel"
-                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                 name="Phone"
                 minLength={10}
                 maxLength={10}
@@ -80,15 +78,22 @@ function Signup() {
                 required
               />
             </Form.Group>
-            <div className="input-group mb-3">
-                <label className="input-group-text" htmlFor="Profession" name="Profession">Profession</label>
-                <select className="form-select" id="Profession" name="Profession" onChange={handleChange}>
-                    <option defaultValue="Student" >Student</option>
-                    <option value="Fresher">Fresher</option>
-                    <option value="Software Developer">Software Developer</option>
-                    <option value="Manager/Lead">Manager/Lead</option>
-                    <option value="Other">Other</option>
-                </select>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Control
+                type="password"
+                placeholder="Enter Password"
+                name="Password"
+                value={user.Password}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <div className='m-1'>
+            <PasswordChecklist 
+            rules={["minLength","specialChar","number","capital"]}
+            minLength={6}
+            value={user.Password}
+            onChange={(isValid) => {}}/>
             </div>
             <div className="d-grid gap-2 m-2">
               <Button variant="primary" type="submit">
